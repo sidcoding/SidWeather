@@ -13,5 +13,8 @@ object ServiceCreator {
 
     fun <T> create(serviceClass: Class<T>) : T = retrofit.create(serviceClass)
 
+    /**
+     * 泛型实例化，关键字reified
+     */
     inline fun <reified T> create() : T = create(T::class.java)
 }
