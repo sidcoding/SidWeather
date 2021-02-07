@@ -97,21 +97,22 @@ ARouter
 
 问题四：使用@Autowired注解后，build报错：ARouter::Compiler An exception is encountered, [The inject fields CAN NOT BE 'private'!!! please check field [*] in class [*.*.*.MainActivity]]
 注意：
-
-使用@Autowired注解时一定要在onCreate方法中使用如下代码ARouter.getInstance().inject(this)
-使用@Autowired注解的变量一定要初始化，尽量少用lateinit字段
-原因：注解使用错误，1、注解的变量是私有变量，2、未添加@JvmField注解
+  使用@Autowired注解时一定要在onCreate方法中使用如下代码ARouter.getInstance().inject(this)
+  使用@Autowired注解的变量一定要初始化，尽量少用lateinit字段
+  原因：注解使用错误，1、注解的变量是私有变量，2、未添加@JvmField注解
 例如：
-
-错误示范1：
+  错误示范1：
+  
     @Autowired(name = Constants.INTENT_DATA_KEY.KEY1)
     private var msg = -1
     
-错误示范2：
+  错误示范2：
+  
     @Autowired(name = Constants.INTENT_DATA_KEY.KEY1)
     var msg = -1
 
-正确示范：
+  正确示范：
+
     @JvmField
     @Autowired(name = Constants.INTENT_DATA_KEY.KEY1)
     var msg = -1
